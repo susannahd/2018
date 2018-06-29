@@ -137,12 +137,12 @@ server <- function(input, output,session) {
       return(NULL)} 
     else{
       df<-myData()
-      df[[input$dma_select]]<-str_trim(df[[input$dma_select]])
-      df[[input$dma_select]]<-str_to_upper(df[[input$dma_select]])
-      df[[input$dma_select]]<-gsub("\\."," ", df[[input$dma_select]])
-      df[[input$dma_select]]<-gsub("-"," ", df[[input$dma_select]])
-      df[[input$dma_select]]<-gsub("\\/"," ", df[[input$dma_select]])
-      df[[input$dma_select]]<-gsub("(?<=\\S)[aeiou]", "", df[[input$dma_select]], perl = TRUE, ignore.case = TRUE)
+      df$manipulated_dma<-str_trim(df[[input$dma_select]])
+      df$manipulated_dma<-str_to_upper(df$manipulated_dma)
+      df$manipulated_dma<-gsub("\\."," ", df$manipulated_dma)
+      df$manipulated_dma<-gsub("-"," ", df$manipulated_dma)
+      df$manipulated_dma<-gsub("\\/"," ", df$manipulated_dma)
+      df$manipulated_dma<-gsub("(?<=\\S)[aeiou]", "", df$manipulated_dma, perl = TRUE, ignore.case = TRUE)
       df
     }
   })
@@ -154,24 +154,33 @@ server <- function(input, output,session) {
       
       df<-df()
       dma<-dma2()
+
       ##UPDATE: CREATE TEMP LOOKUP FILE BEFORE MAPPING OUT
-      tmp_map<-as.data.frame(unique(df[[input$dma_select]]))
-      names(tmp_map) <-input$dma_select
+      tmp_map<-as.data.frame(unique(df$manipulated_dma))
+      names(tmp_map) <-"manipulated_dma"
+      
       
       #Merge the unique DMAs in your input file with the DMA mapping file to speed up merge
       dat<-merge(tmp_map,dma,by=NULL)
       
       #Take the stringdistance between original DMA column and mapping DMA column
-      dat$dist<-stringdist(dat$DMA_COL,dat[[input$dma_select]],method = "jw",p=0.1)
+      dat$dist<-stringdist(dat$DMA_COL,dat$manipulated_dma,method = "jw",p=0.1)
       
      
       #Group by DMA and take the minimum distance, select to order columns and rename for clarity      
       dat <-dat %>% 
        group_by_(.dots=names(tmp_map)) %>%
        slice(which.min(dist)) %>%
-        rename(transformed_dma = DisplayDMA) %>%
-        arrange(desc(dist)) %>%
+        rename(assumed_match_dma = DisplayDMA) %>%
         select(-DMA_COL)
+      
+      df<-df() %>%
+        select(input$dma_select,manipulated_dma)
+      
+      dat<-inner_join(df,dat,by = "manipulated_dma") %>%
+        unique() %>%
+        select(-manipulated_dma) %>%
+        arrange(desc(dist))
       
       dat
     }
@@ -193,7 +202,7 @@ server <- function(input, output,session) {
       df<-df()
       
       dat<-inner_join(df,dat,by = input$dma_select) %>%
-        select(-dist)
+        select(-c(manipulated_dma,dist))
       
     }
   })
