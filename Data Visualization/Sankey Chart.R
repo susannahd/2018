@@ -50,6 +50,3 @@ ggplot(as.data.frame(UCBAdmissions),
         axis.title = element_text(size = 12, face = "bold"),
         axis.text = element_blank(),
         axis.ticks = element_blank())
-
-?geom_label()
-?geom_flow()
