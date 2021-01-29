@@ -1,7 +1,7 @@
 ###########################################
 ##Code: prep_format.R
 ##Project: Any
-##Description:  Format prep files to avoid common errors when uploading to GPSe
+##Description:  Format prep files to avoid common errors when uploading
 ##Author: Susannah Derr
 ##Date: February 27,2018
 ############################################
@@ -18,7 +18,7 @@ library(dplyr)
 library(lubridate)
 
 ##Set your working directory to the directory where your upload files are saved. 
-setwd("Z:/Admin Charlottesville/Temp/Temp - Susannah/")
+setwd("")
 
 ################################
 ##DO NOT MODIFY THE CODE BELOW##
