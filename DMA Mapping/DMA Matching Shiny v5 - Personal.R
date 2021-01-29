@@ -20,7 +20,7 @@ for(i in 1:length(required_packages)){
     library(required_packages[i], character.only=T)}  
 }
 
-dma<-read_csv("S:/R Training/dma_map.csv")
+dma<-read_csv("dma_map.csv")
 end_col<-ncol(dma)
 
 # Define UI for data upload app ----
