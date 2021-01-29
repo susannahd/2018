@@ -21,7 +21,7 @@ library(stringr)
 ######################
 
 ##Set to your own working directory - files will be saved here
-setwd("Z:Admin Charlottesville/Temp/Temp-Susannah")
+setwd("")
 
 ##Provide your API key
 api_key<-"Y0UR API KEY"
