@@ -1,17 +1,17 @@
 ###########################################
-##Code: nielsen_to_iri.R
-##Project: WhiteWave
-##Description: Convert Nielsen DMAs to IRi MULOs and check on hh percentages
+##Code: dma_map.R
+##Project: Any
+##Description: Convert Nielsen DMAs to IRi MULOs
 ##Author: Susannah Derr
 ##Date: March 9, 2018
 ############################################
 rm(list=ls())
 
 ###INPUT THE FOLDER OF YOUR FILE WITH DMAs IN QUOTATION MARKS
-my_dir <-"\\\\ap\\livens\\Broomfield\\WhiteWave\\2017\\1. Data Collected & Received\\Media\\Rentrack TV\\8. Data for December 2017 Actualizations"
+my_dir <-""
 
 ##INPUT THE FILE NAME
-input<-"National_DVR_sample.csv"
+input<-"sample.csv"
 
 ##INPUT THE DMA COLUMN NAME
 dma_column <-"market_name"
@@ -23,7 +23,7 @@ desired_mapping <-"Nielsen"
 ######################################
 ##NO MODIFICATIONS BEYOND THIS POINT##
 ######################################
-setwd("Z:/Admin Charlottesville/Temp/Temp - Susannah")
+setwd("")
 library(dplyr)
 library(stringr)
 library(stringdist)
