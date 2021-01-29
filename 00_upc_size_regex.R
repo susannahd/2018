@@ -1,6 +1,6 @@
 ###########################################
 ##Code: 00_upc_size_regex.R
-##Project: WhiteWave
+##Project: Any
 ##Description: Regular Expressions for Extracting Sizes from SKUs
 ##Author: Susannah Derr
 ##Date: March 12, 2018
@@ -28,8 +28,4 @@ df$size_just_digits <- str_extract(df$product,"\\d++")
 
 ##Create a new column for suze by extracting EVERYTHING after the first digit
 ##Good if SKUs are different units (e.g. 10g, 30oz, 20pack)
-df$size_digits_and_all <- str_extract(df$product,"\\d.*") 
-
-##Check it
-head(df)
-View(df)
+df$size_digits_and_all <- str_extract(df$product,"\\d.*")
