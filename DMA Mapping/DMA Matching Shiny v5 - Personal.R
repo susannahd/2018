@@ -1,6 +1,5 @@
 ###########################################
 ##Code: DMA Matching Shiny v3.R
-##Project: Data Prep Portal
 ##Description: Maps DMAs to Nielsen/IRI markets
 ##Author: Susannah Derr
 ##Date: April 18, 2018
