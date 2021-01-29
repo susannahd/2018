@@ -107,7 +107,6 @@ for (fileName in fileNames_xl) {
 ##Check that Value, Variable, and Time dimensions are included
 ##Check that column names match dependent variable file
 ##XXXDate type cannot change across upload flies, check to make sure date is in the same format (set it to mm.dd.yy or whatever)
-##If dimension member is too long, truncate (ask Nick about character limits)
 ##XXXCheck that files are csv, if not, output to new directory
 ##XXXEnsure that there are no blanks in data, if so, impute
 ##XXXIf column headers have spaces, replace with an underscore
