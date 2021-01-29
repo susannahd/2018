@@ -6,8 +6,6 @@
 ## Author: Susannah Derr
 ##################################################
 rm(list=ls())
-getwd()
-setwd("Z:Admin Charlottesville/Temp/Temp-Susannah")
 
 library(dplyr)
 library(reshape2)
